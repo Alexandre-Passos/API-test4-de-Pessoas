@@ -1,8 +1,7 @@
-import express from "express"
 import mongoose from "mongoose"
-import ErroInternoServidor from "../erros/erroInternoServidor";
-import RequisicaoIncorreta from "../erros/erroRequisicao";
-import ErroValidacao from "../erros/erroValidacao";
+import ErroInternoServidor from "../erros/erroInternoServidor.js";
+import RequisicaoIncorreta from "../erros/erroRequisicao.js";
+import ErroValidacao from "../erros/erroValidacao.js";
 
 const recebendoErros = (erro, req, res, next) => {
     if (erro instanceof mongoose.Error.CastError) {
