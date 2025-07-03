@@ -8,7 +8,10 @@ const recebendoErros = (erro, req, res, next) => {
         new RequisicaoIncorreta().exibirErro(res);
     } else if (erro instanceof mongoose.Error.ValidationError) {
         new ErroValidacao(erro).exibirErro(res);
-    } else {
+    } else if (erro instanceof Erro404) {
+        erro.exibirErro(res)
+    }
+    else {
         new ErroInternoServidor().exibirErro(res);
     }
 }
