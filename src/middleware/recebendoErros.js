@@ -1,11 +1,16 @@
 import express from "express"
 import mongoose from "mongoose"
+import ErroInternoServidor from "../erros/erroInternoServidor";
+import RequisicaoIncorreta from "../erros/erroRequisicao";
+import ErroValidacao from "../erros/erroValidacao";
 
 const recebendoErros = (erro, req, res, next) => {
     if (erro instanceof mongoose.Error.CastError) {
-        res.status(501).send("Muito erros detectado");
+        new RequisicaoIncorreta().exibirErro(res);
+    } else if (erro instanceof mongoose.Error.ValidationError) {
+        new ErroValidacao(erro).exibirErro(res);
     } else {
-        console.log("Algum erro diferente detectado");
+        new ErroInternoServidor().exibirErro(res);
     }
 }
 export default recebendoErros
