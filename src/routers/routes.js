@@ -11,5 +11,6 @@ rotas.get("/", (req, res) => {
 //Outras rotas
 rotas.get("/Pessoas", Pessoas.exibirPessoa);
 rotas.get("/Pessoas/:id", Pessoas.procurarPessoaEspecifica);
+rotas.post("/Pessoas/", Pessoas.cadastrarPessoa);
 
 export default rotas;
