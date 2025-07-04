@@ -9,9 +9,11 @@ rotas.get("/", (req, res) => {
 })
 
 //Outras rotas
-rotas.get("/Pessoas", Pessoas.exibirPessoa);
-rotas.get("/Pessoas/:id", Pessoas.procurarPessoaEspecifica);
-rotas.put("/Pessoas/:id", Pessoas.atualizarPessoaEspecifica);
-rotas.delete("/Pessoas/:id", Pessoas.excluirPessoaEspecifica);
+rotas.get("/Pessoas", Pessoas.exibirPessoa); //Exibir Pessoa
+rotas.get("/Pessoas/:id", Pessoas.procurarPessoaEspecifica); //Procurar Pessoa
+rotas.post("/Pessoas/", Pessoas.cadastrarPessoa); //Cadastrar Pessoa
+rotas.put("/Pessoas/:id", Pessoas.atualizarPessoaEspecifica); //Atualizar Pessoa
+rotas.delete("/Pessoas/:id", Pessoas.excluirPessoaEspecifica); //Excluir Pessoa
+
 
 export default rotas;
