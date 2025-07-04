@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import ModeloPessoa from "../models/Pessoa.js";
 
 class Pessoas {
@@ -20,12 +21,30 @@ class Pessoas {
 
     static cadastrarPessoa = async (req, res, next) => {
         try {
-            const novaPessoa = new ModeloPessoa(req.body)
-            const adicionarPessoa = await novaPessoa.save()
+            const novaPessoa = await ModeloPessoa.create(req.body);
 
             res.status(201).json({ mensagem: "Pessoa criada com sucesso!.", pessoa: novaPessoa })
         } catch (error) {
-            next(error)
+            next(error);
+        }
+    }
+
+    static atualizarPessoaEspecifica = async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const atualizar = await ModeloPessoa.findByIdAndUpdate(id, { $set: req.body });
+            res.status(201).json({ mensagem: "Pessoa atualizada com sucesso.", pessoa: atualizar })
+        } catch (error) {
+            res.status(500).send("Atualização falhou 😊.");
+        }
+    }
+    static excluirPessoaEspecifica = async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            await ModeloPessoa.findByIdAndDelete(id);
+            res.status(200).json({ mensagem: "Pessoa excluída com sucesso." });
+        } catch (error) {
+            res.status(500).send("Excluir Pessoa falhou 😊.");
         }
     }
 }
