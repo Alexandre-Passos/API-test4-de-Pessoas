@@ -2,12 +2,15 @@ import mongoose from "mongoose"
 import ErroInternoServidor from "../erros/erroInternoServidor.js";
 import RequisicaoIncorreta from "../erros/erroRequisicao.js";
 import ErroValidacao from "../erros/erroValidacao.js";
+import Erro404 from "../erros/erro404.js";
 
 const recebendoErros = (erro, req, res, next) => {
     if (erro instanceof mongoose.Error.CastError) {
         new RequisicaoIncorreta().exibirErro(res);
     } else if (erro instanceof mongoose.Error.ValidationError) {
         new ErroValidacao(erro).exibirErro(res);
+    } else if (erro instanceof mongoose.Error.DocumentNotFoundError) {
+        erro.exibirErro(res)
     } else if (erro instanceof Erro404) {
         erro.exibirErro(res)
     }
