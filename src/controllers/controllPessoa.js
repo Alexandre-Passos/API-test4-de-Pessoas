@@ -47,6 +47,22 @@ class Pessoas {
             next(error)
         }
     }
-}
+    static pesquisaPessoaPorFiltro = async (req, res, next) => {
+        try {
+            const { nome, idade, nascionalidade, sexo, profissao } = req.query;
+            const busca = {};
+            if (nome) busca.nome = { $regex: nome, $options: "i" };
+            if (idade) busca.idade = Number(idade);
+            if (nascionalidade) busca.nascionalidade = { $regex: nascionalidade, $options: "i" };
+            if (sexo) busca.sexo = { $regex: sexo, $options: "i" };
+            if (profissao) busca.profissao = { $regex: profissao, $options: "i" };
 
+            const pessoas = await ModeloPessoa.find(busca);
+
+            res.status(200).send(pessoas);
+        } catch (error) {
+            next(error)
+        }
+    }
+}
 export default Pessoas;
