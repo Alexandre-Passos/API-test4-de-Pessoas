@@ -25,7 +25,7 @@ class Pessoas {
 
             res.status(201).json({ mensagem: "Pessoa criada com sucesso!.", pessoa: novaPessoa })
         } catch (error) {
-            next(error);
+            res.status(500).send("Cadastrar Pessoa falhou 😊.");
         }
     }
 
