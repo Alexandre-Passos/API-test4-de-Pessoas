@@ -11,5 +11,7 @@ rotas.get("/", (req, res) => {
 //Outras rotas
 rotas.get("/Pessoas", Pessoas.exibirPessoa);
 rotas.get("/Pessoas/:id", Pessoas.procurarPessoaEspecifica);
+rotas.put("/Pessoas/:id", Pessoas.atualizarPessoaEspecifica);
+rotas.delete("/Pessoas/:id", Pessoas.excluirPessoaEspecifica);
 
 export default rotas;
