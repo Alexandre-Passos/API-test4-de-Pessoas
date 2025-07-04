@@ -6,6 +6,6 @@ const server = express();
 
 server.use(express.json());
 server.use(rotas);
-server.use(receberErro404);//Rotas para receber o famoso erro 404
-server.use(recebendoErros);// Rotas para tratar a maioria dos erros
+server.use(receberErro404); // 404
+server.use(recebendoErros); // tratamento de erros
 export default server;

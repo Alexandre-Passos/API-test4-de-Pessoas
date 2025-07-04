@@ -1,5 +1,6 @@
 class ErroInternoServidor extends Error {
     constructor(mensagemErro = "Erro interno no servidor", statusErro = 500) {
+        super()
         this.mensagemErro = mensagemErro
         this.statusErro = statusErro
     }

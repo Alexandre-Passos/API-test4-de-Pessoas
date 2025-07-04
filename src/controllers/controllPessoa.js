@@ -7,7 +7,7 @@ class Pessoas {
             const pessoas = await ModeloPessoa.find();
             res.status(200).send(pessoas);
         } catch (error) {
-            res.status(500).send("Algo de errado aconteceu");
+            next(error)
         }
     }
     static procurarPessoaEspecifica = async (req, res, next) => {
@@ -25,7 +25,7 @@ class Pessoas {
 
             res.status(201).json({ mensagem: "Pessoa criada com sucesso!.", pessoa: novaPessoa })
         } catch (error) {
-            res.status(500).send("Cadastrar Pessoa falhou 😊.");
+            next(error)
         }
     }
 
@@ -35,7 +35,7 @@ class Pessoas {
             const atualizar = await ModeloPessoa.findByIdAndUpdate(id, { $set: req.body });
             res.status(201).json({ mensagem: "Pessoa atualizada com sucesso.", pessoa: atualizar })
         } catch (error) {
-            res.status(500).send("Atualização falhou 😊.");
+            next(error)
         }
     }
     static excluirPessoaEspecifica = async (req, res, next) => {
@@ -44,7 +44,7 @@ class Pessoas {
             await ModeloPessoa.findByIdAndDelete(id);
             res.status(200).json({ mensagem: "Pessoa excluída com sucesso." });
         } catch (error) {
-            res.status(500).send("Excluir Pessoa falhou 😊.");
+            next(error)
         }
     }
 }

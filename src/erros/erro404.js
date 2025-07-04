@@ -1,8 +1,8 @@
 import ErroInternoServidor from "./erroInternoServidor.js";
 
 class Erro404 extends ErroInternoServidor {
-    constructor() {
-        super("Página não encontrada", 404)
+    constructor(mensagemErro = "Página não encontrada") {
+        super(mensagemErro, 404);
     }
 }
 
